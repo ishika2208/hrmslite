@@ -19,14 +19,14 @@ print("Existing data cleared.")
 
 # Sample Professional Data
 employees = [
-    {"employee_id": "EMP-9001", "full_name": "Eleanor Vance", "email": "eleanor.v@company.com", "department": "Engineering"},
-    {"employee_id": "EMP-9002", "full_name": "Marcus Sterling", "email": "m.sterling@company.com", "department": "Product"},
-    {"employee_id": "EMP-9003", "full_name": "Sophia Chen", "email": "sophia.chen@company.com", "department": "Design"},
-    {"employee_id": "EMP-9004", "full_name": "Julian Bautista", "email": "j.bautista@company.com", "department": "Engineering"},
-    {"employee_id": "EMP-9005", "full_name": "Aria Montgomery", "email": "aria.m@company.com", "department": "Human Resources"},
-    {"employee_id": "EMP-9006", "full_name": "David O'Connor", "email": "doconnor@company.com", "department": "Sales"},
-    {"employee_id": "EMP-9007", "full_name": "Zara Ali", "email": "zara.ali@company.com", "department": "Marketing"},
-    {"employee_id": "EMP-9008", "full_name": "Thomas Wright", "email": "t.wright@company.com", "department": "Finance"}
+    {"employee_id": "EMP-9001", "full_name": "Arjun Sharma", "email": "arjun.s@company.com", "department": "Engineering"},
+    {"employee_id": "EMP-9002", "full_name": "Priya Patel", "email": "priya.p@company.com", "department": "Product"},
+    {"employee_id": "EMP-9003", "full_name": "Rahul Verma", "email": "rahul.verma@company.com", "department": "Design"},
+    {"employee_id": "EMP-9004", "full_name": "Neha Gupta", "email": "neha.gupta@company.com", "department": "Engineering"},
+    {"employee_id": "EMP-9005", "full_name": "Vikram Singh", "email": "vikram.s@company.com", "department": "Human Resources"},
+    {"employee_id": "EMP-9006", "full_name": "Ananya Desai", "email": "ananya.d@company.com", "department": "Sales"},
+    {"employee_id": "EMP-9007", "full_name": "Rohan Iyer", "email": "rohan.iyer@company.com", "department": "Marketing"},
+    {"employee_id": "EMP-9008", "full_name": "Kavya Menon", "email": "k.menon@company.com", "department": "Finance"}
 ]
 
 # Insert Employees

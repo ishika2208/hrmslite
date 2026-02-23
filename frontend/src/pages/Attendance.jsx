@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Loader2, CalendarCheck, CalendarSearch, CheckCircle2, XCircle, User, CalendarDays, History } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const Attendance = () => {
     const [employees, setEmployees] = useState([]);
@@ -14,6 +15,10 @@ const Attendance = () => {
     // Today's date initialized
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [status, setStatus] = useState('Present');
+    const [isConfirmed, setIsConfirmed] = useState(false);
+
+    // Filter for attendance history
+    const [filterDate, setFilterDate] = useState('');
 
     // Fetch employees list to populate dropdown
     useEffect(() => {
@@ -72,8 +77,13 @@ const Attendance = () => {
             const res = await axios.get(`http://127.0.0.1:5000/api/attendance/${selectedEmployee}`);
             setAttendanceData(res.data);
 
+            // Trigger confirmed animation state
+            setIsConfirmed(true);
+            toast.success(`Marked as ${status} for ${date}`);
+            setTimeout(() => setIsConfirmed(false), 2000);
+
         } catch (err) {
-            alert(err.response?.data?.error || 'Failed to mark attendance');
+            toast.error(err.response?.data?.error || 'Failed to mark attendance');
         } finally {
             setActionLoading(false);
         }
@@ -150,9 +160,19 @@ const Attendance = () => {
                                     </div>
 
                                     <div className="form-group" style={{ flex: '1', minWidth: '140px', marginBottom: 0 }}>
-                                        <button type="submit" disabled={actionLoading} className={`btn ${status === 'Present' ? 'btn-primary' : 'btn-danger'} w-full`} style={{ height: '48px' }}>
-                                            {actionLoading ? <Loader2 className="spinner" style={{ width: 18, height: 18 }} /> : (status === 'Present' ? <CheckCircle2 size={18} /> : <XCircle size={18} />)}
-                                            {actionLoading ? 'Saving...' : 'Confirm'}
+                                        <button
+                                            type="submit"
+                                            disabled={actionLoading || isConfirmed}
+                                            className={`btn ${status === 'Present' || isConfirmed ? 'btn-primary' : 'btn-danger'} w-full`}
+                                            style={{
+                                                height: '48px',
+                                                backgroundColor: isConfirmed ? 'var(--success)' : '',
+                                                borderColor: isConfirmed ? 'var(--success)' : '',
+                                                transition: 'all 0.3s ease'
+                                            }}
+                                        >
+                                            {actionLoading ? <Loader2 className="spinner" style={{ width: 18, height: 18 }} /> : (isConfirmed || status === 'Present' ? <CheckCircle2 size={18} /> : <XCircle size={18} />)}
+                                            {actionLoading ? 'Saving...' : (isConfirmed ? 'Confirmed!' : 'Confirm')}
                                         </button>
                                     </div>
                                 </form>
@@ -172,33 +192,52 @@ const Attendance = () => {
                                     <Loader2 className="spinner" />
                                 </div>
                             ) : attendanceData?.records?.length > 0 ? (
-                                <div className="table-wrapper" style={{ maxHeight: '500px', overflowY: 'auto' }}>
-                                    <table className="table">
-                                        <thead style={{ position: 'sticky', top: 0, zIndex: 1, boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
-                                            <tr>
-                                                <th>Record Date (YYYY-MM-DD)</th>
-                                                <th>Attendance Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {attendanceData.records.map((record) => (
-                                                <tr key={record.date}>
-                                                    <td className="font-medium" style={{ color: '#111827' }}>
-                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                                            <CalendarDays size={16} className="text-muted" />
-                                                            {record.date}
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <span className={`badge ${record.status === 'Present' ? 'badge-success' : 'badge-danger'}`} style={{ padding: '6px 14px' }}>
-                                                            <span style={{ display: 'inline-block', width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'currentColor', marginRight: '6px' }}></span>
-                                                            {record.status}
-                                                        </span>
-                                                    </td>
+                                <div>
+                                    <div style={{ padding: '24px 32px', display: 'flex', justifyContent: 'flex-end', borderBottom: '1px solid var(--border-light)' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                            <span style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: '500' }}>Filter by Date:</span>
+                                            <input
+                                                type="date"
+                                                className="form-control"
+                                                value={filterDate}
+                                                onChange={(e) => setFilterDate(e.target.value)}
+                                                style={{ height: '36px', width: 'auto', backgroundColor: '#f8fafc', fontSize: '13px', border: '1px solid #e2e8f0', borderRadius: '8px' }}
+                                            />
+                                            {filterDate && (
+                                                <button onClick={() => setFilterDate('')} className="btn btn-outline" style={{ height: '36px', padding: '0 12px', fontSize: '13px' }}>Clear</button>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="table-wrapper" style={{ maxHeight: '500px', overflowY: 'auto' }}>
+                                        <table className="table">
+                                            <thead style={{ position: 'sticky', top: 0, zIndex: 1, boxShadow: '0 1px 2px rgba(0,0,0,0.05)' }}>
+                                                <tr>
+                                                    <th>Record Date (YYYY-MM-DD)</th>
+                                                    <th>Attendance Status</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                {attendanceData.records
+                                                    .filter(record => filterDate === '' || record.date === filterDate)
+                                                    .map((record) => (
+                                                        <tr key={record.date}>
+                                                            <td className="font-medium" style={{ color: '#111827' }}>
+                                                                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                                                    <CalendarDays size={16} className="text-muted" />
+                                                                    {record.date}
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <span className={`badge ${record.status === 'Present' ? 'badge-success' : 'badge-danger'}`} style={{ padding: '6px 14px' }}>
+                                                                    <span style={{ display: 'inline-block', width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'currentColor', marginRight: '6px' }}></span>
+                                                                    {record.status}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             ) : (
                                 <div className="empty-state" style={{ padding: '60px 20px', backgroundColor: 'transparent', border: 'none' }}>

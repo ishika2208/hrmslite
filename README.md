@@ -1,10 +1,10 @@
-# HRMS Lite 🚀
+# HRMS Lite 
 
 A lightweight, modern Human Resource Management System built for a streamlined administrative experience. 
 
 Currently, this application allows an admin to easily manage employee records and track daily attendance. It focuses on delivering a clean, stable, and professional interface with a robust backend architecture.
 
-## 🔗 Live Deployments
+##  Live Deployments
 
 - **Frontend (Live URL):** [Pending Deployment]
 - **Backend API:** [Pending Deployment]
@@ -12,7 +12,7 @@ Currently, this application allows an admin to easily manage employee records an
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 **Frontend:**
 - **React.js** (Bootstrapped with Vite for high performance)
@@ -34,7 +34,7 @@ Currently, this application allows an admin to easily manage employee records an
 
 ---
 
-## ⚙️ How to Run Locally
+##  How to Run Locally
 
 Follow these instructions to get the application up and running on your local machine.
 
@@ -93,16 +93,16 @@ npm run dev
 
 ---
 
-## 📌 Assumptions & Limitations
+##  Assumptions & Limitations
 
-- **Authentication:** For the scope of this "Lite" version, it is assumed there is a single admin user operating the application. There is no active authentication/authorization or RBAC (Role-Based Access Control) layered over the endpoints.
+- **Authentication:** For the scope of this "Lite" version, it is assumed there is a single admin user operating the application. There is no active authentication/authorization or RBAC (Role Based Access Control) layered over the endpoints.
 - **Environment Context:** The timezone for attendance is based on the local system/browser time of the administrator executing the application.
-- **Attendance Model:** Instead of complex shift or hour-tracking, attendance is simplified to a binary "Present" or "Absent" state per day.
+- **Attendance Model:** Instead of complex shift or hour tracking, attendance is simplified to a binary "Present" or "Absent" state per day.
 - **Data Deletion:** Deleting an employee cascading deletes their attendance records (to be strictly implemented in backend logic), ensuring database integrity.
 
 ---
 
-## ✨ Features Implemented (Scope)
+##  Features Implemented (Scope)
 
 1. **Employee Management:** Add, view, and reliably delete employee profiles (ID, Name, Email, Department). Validations check for duplicate ID constraints and email formats.
 2. **Attendance Management:** Smooth "daily" view to mark an employee Present or Absent.
