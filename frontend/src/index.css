@@ -546,6 +546,12 @@ h2 {
   padding-right: 16px;
 }
 
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .app-container {
@@ -636,7 +642,8 @@ h2 {
     justify-content: flex-start;
   }
 
-  .responsive-grid {
+  .responsive-grid,
+  .form-grid {
     grid-template-columns: 1fr !important;
   }
 

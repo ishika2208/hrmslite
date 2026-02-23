@@ -194,14 +194,14 @@ const Attendance = () => {
                             ) : attendanceData?.records?.length > 0 ? (
                                 <div>
                                     <div className="responsive-filter" style={{ padding: '24px 32px', display: 'flex', justifyContent: 'flex-end', borderBottom: '1px solid var(--border-light)' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                            <span style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: '500' }}>Filter by Date:</span>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', width: '100%', justifyContent: 'flex-start' }}>
+                                            <span style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: '500', whiteSpace: 'nowrap' }}>Filter by Date:</span>
                                             <input
                                                 type="date"
                                                 className="form-control"
                                                 value={filterDate}
                                                 onChange={(e) => setFilterDate(e.target.value)}
-                                                style={{ height: '36px', width: 'auto', backgroundColor: '#f8fafc', fontSize: '13px', border: '1px solid #e2e8f0', borderRadius: '8px' }}
+                                                style={{ height: '36px', minWidth: '150px', flex: '1', backgroundColor: '#f8fafc', fontSize: '13px', border: '1px solid #e2e8f0', borderRadius: '8px' }}
                                             />
                                             {filterDate && (
                                                 <button onClick={() => setFilterDate('')} className="btn btn-outline" style={{ height: '36px', padding: '0 12px', fontSize: '13px' }}>Clear</button>
