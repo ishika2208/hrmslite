@@ -98,7 +98,7 @@ const AddEmployee = () => {
                             <h3 style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '700', marginBottom: '20px', color: '#9ca3af', display: 'flex', alignItems: 'center', gap: '8px' }}>
                                 <User size={16} /> Personal Details
                             </h3>
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                            <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                                 <div className="form-group" style={{ marginBottom: 0 }}>
                                     <label className="form-label" style={{ fontSize: '13px', fontWeight: '600', color: '#374151' }}>Employee ID <span style={{ color: 'var(--danger)' }}>*</span></label>
                                     <input

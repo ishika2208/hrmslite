@@ -659,4 +659,9 @@ h2 {
   .table td {
     padding: 12px 16px;
   }
+
+  .responsive-filter {
+    justify-content: flex-start !important;
+    padding: 16px 20px !important;
+  }
 }

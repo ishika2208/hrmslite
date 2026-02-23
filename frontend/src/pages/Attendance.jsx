@@ -193,7 +193,7 @@ const Attendance = () => {
                                 </div>
                             ) : attendanceData?.records?.length > 0 ? (
                                 <div>
-                                    <div style={{ padding: '24px 32px', display: 'flex', justifyContent: 'flex-end', borderBottom: '1px solid var(--border-light)' }}>
+                                    <div className="responsive-filter" style={{ padding: '24px 32px', display: 'flex', justifyContent: 'flex-end', borderBottom: '1px solid var(--border-light)' }}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                                             <span style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: '500' }}>Filter by Date:</span>
                                             <input
