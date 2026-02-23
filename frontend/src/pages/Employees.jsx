@@ -112,7 +112,7 @@ const Employees = () => {
                     </Link>
                 </div>
             ) : (
-                <div className="card table-wrapper" style={{ overflow: 'hidden', border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)' }}>
+                <div className="card table-wrapper" style={{ overflowX: 'auto', overflowY: 'hidden', border: '1px solid rgba(0,0,0,0.05)', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)' }}>
                     <table className="table" style={{ margin: 0 }}>
                         <thead style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
                             <tr>
@@ -136,7 +136,7 @@ const Employees = () => {
                                             </div>
                                         </div>
                                     </td>
-                                    <td style={{ padding: '20px 24px', color: '#475569', fontSize: '14px' }}>{emp.email}</td>
+                                    <td style={{ padding: '20px 24px', color: '#475569', fontSize: '14px', wordBreak: 'break-all', minWidth: '160px' }}>{emp.email}</td>
                                     <td style={{ padding: '20px 24px' }}>
                                         <span className={`badge badge-neutral`} style={{ padding: '6px 12px', fontSize: '13px', fontWeight: '500', backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #e2e8f0' }}>
                                             {emp.department}
