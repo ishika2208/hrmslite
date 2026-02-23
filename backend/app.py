@@ -15,19 +15,20 @@ app = Flask(__name__)
 CORS(app)
 
 # MongoDB Connection String from .env
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://127.0.0.1:27017/hrms_db")
+MONGO_URI = os.getenv("MONGO_URI")
+
+if MONGO_URI is None:
+    raise ValueError("MONGO_URI environment variable must be set!")
+
 try:
-    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
-    # Check if connected
-    client.server_info()
+    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=30000)
+    # Ping the server to verify connection
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
     db = client.get_default_database()
-    if db.name is None:
-        db = client['hrms_db']
 except Exception as e:
-    print(f"Failed to connect to MongoDB: {e}")
-    # Fallback to local
-    client = MongoClient("mongodb://127.0.0.1:27017/")
-    db = client['hrms_db']
+    print(f"CRITICAL ERROR: Failed to connect to MongoDB URI. Details: {e}")
+    raise e
 
 # Collections
 employees_collection = db["employees"]
