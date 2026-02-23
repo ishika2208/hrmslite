@@ -101,7 +101,7 @@ const Attendance = () => {
 
     return (
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div className="flex justify-between items-center mb-2">
+            <div className="flex justify-between items-center mb-2 responsive-header">
                 <div>
                     <h1 className="flex items-center gap-3" style={{ margin: 0 }}>
                         <CalendarCheck size={36} style={{ color: "var(--primary)" }} />
@@ -120,7 +120,7 @@ const Attendance = () => {
                     <p>Add employees before tracking their attendance.</p>
                 </div>
             ) : (
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '32px', alignItems: 'start' }}>
+                <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '32px', alignItems: 'start' }}>
 
                     {/* Left Column: Form & History */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>

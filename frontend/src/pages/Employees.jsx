@@ -48,7 +48,7 @@ const Employees = () => {
 
     return (
         <div style={{ maxWidth: '1200px', margin: '0 auto', animation: 'slideUpFade 0.4s ease-out' }}>
-            <div className="flex justify-between items-end mb-8" style={{ paddingBottom: '24px', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
+            <div className="flex justify-between items-end mb-8 responsive-header" style={{ paddingBottom: '24px', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
                 <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                     <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: 'var(--primary-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', border: '1px solid rgba(79, 70, 229, 0.15)' }}>
                         <Users size={32} />
