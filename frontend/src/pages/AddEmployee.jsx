@@ -45,7 +45,7 @@ const AddEmployee = () => {
         }
 
         try {
-            await axios.post('http://127.0.0.1:5000/api/employees', formData);
+            await axios.post('https://hrms-lite-1-1re9.onrender.com/api/employees', formData);
             toast.success('Employee successfully onboarded!');
             navigate('/');
         } catch (err) {

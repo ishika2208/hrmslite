@@ -25,7 +25,7 @@ const Attendance = () => {
         const fetchEmployees = async () => {
             try {
                 setLoading(true);
-                const res = await axios.get('http://127.0.0.1:5000/api/employees');
+                const res = await axios.get('https://hrms-lite-1-1re9.onrender.com/api/employees');
                 setEmployees(res.data.employees);
                 if (res.data.employees.length > 0) {
                     setSelectedEmployee(res.data.employees[0].employee_id);
@@ -46,7 +46,7 @@ const Attendance = () => {
         const fetchAttendance = async () => {
             try {
                 setLoading(true);
-                const res = await axios.get(`http://127.0.0.1:5000/api/attendance/${selectedEmployee}`);
+                const res = await axios.get(`https://hrms-lite-1-1re9.onrender.com/api/attendance/${selectedEmployee}`);
                 setAttendanceData(res.data);
             } catch (err) {
                 if (err.response?.status === 404) {
@@ -67,14 +67,14 @@ const Attendance = () => {
 
         try {
             setActionLoading(true);
-            await axios.post('http://127.0.0.1:5000/api/attendance', {
+            await axios.post('https://hrms-lite-1-1re9.onrender.com/api/attendance', {
                 employee_id: selectedEmployee,
                 date: date,
                 status: status
             });
 
             // Refetch attendance to update view
-            const res = await axios.get(`http://127.0.0.1:5000/api/attendance/${selectedEmployee}`);
+            const res = await axios.get(`https://hrms-lite-1-1re9.onrender.com/api/attendance/${selectedEmployee}`);
             setAttendanceData(res.data);
 
             // Trigger confirmed animation state

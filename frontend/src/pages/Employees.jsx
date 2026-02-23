@@ -12,7 +12,7 @@ const Employees = () => {
     const fetchEmployees = async () => {
         try {
             setLoading(true);
-            const res = await axios.get('http://127.0.0.1:5000/api/employees');
+            const res = await axios.get('https://hrms-lite-1-1re9.onrender.com/api/employees');
             setEmployees(res.data.employees);
             setError(null);
         } catch (err) {
@@ -29,7 +29,7 @@ const Employees = () => {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this employee? This action cannot be undone and will delete their attendance records.")) {
             try {
-                await axios.delete(`http://127.0.0.1:5000/api/employees/${id}`);
+                await axios.delete(`https://hrms-lite-1-1re9.onrender.com/api/employees/${id}`);
                 setEmployees(employees.filter(emp => emp.employee_id !== id));
                 toast.success('Employee deleted successfully.');
             } catch (err) {
