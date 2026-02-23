@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Trash2, Loader2, Users } from 'lucide-react';
+import { Trash2, Loader2, Users, MoveHorizontal } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
@@ -131,7 +131,7 @@ const Employees = () => {
                                                 {emp.full_name.charAt(0)}
                                             </div>
                                             <div>
-                                                <p style={{ margin: 0, fontWeight: '600', color: '#1e293b', fontSize: '15px' }}>{emp.full_name}</p>
+                                                <p style={{ margin: 0, fontWeight: '600', color: '#1e293b', fontSize: '15px', whiteSpace: 'nowrap' }}>{emp.full_name}</p>
                                                 <p style={{ margin: 0, color: '#94a3b8', fontSize: '13px', fontFamily: 'monospace', letterSpacing: '0.02em', marginTop: '2px' }}>{emp.employee_id}</p>
                                             </div>
                                         </div>
@@ -160,6 +160,9 @@ const Employees = () => {
                             ))}
                         </tbody>
                     </table>
+                    <div className="mobile-scroll-hint">
+                        <MoveHorizontal size={16} /> Swipe horizontally to see more details
+                    </div>
                 </div>
             )}
         </div>

@@ -120,7 +120,7 @@ const Attendance = () => {
                     <p>Add employees before tracking their attendance.</p>
                 </div>
             ) : (
-                <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '32px', alignItems: 'start' }}>
+                <div className="attendance-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '32px', alignItems: 'start' }}>
 
                     {/* Left Column: Form & History */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
@@ -142,7 +142,7 @@ const Attendance = () => {
                                             className="form-control"
                                             value={date}
                                             onChange={(e) => setDate(e.target.value)}
-                                            style={{ height: '48px', backgroundColor: 'white' }}
+                                            style={{ minHeight: '48px', backgroundColor: 'white', padding: '10px 14px' }}
                                         />
                                     </div>
 
@@ -224,12 +224,13 @@ const Attendance = () => {
                                                 value={filterDate}
                                                 onChange={(e) => setFilterDate(e.target.value)}
                                                 style={{
-                                                    height: '40px',
-                                                    minWidth: '180px',
+                                                    minHeight: '40px',
+                                                    minWidth: '150px',
                                                     backgroundColor: '#f8fafc',
                                                     fontSize: '13px',
                                                     border: '1px solid #e2e8f0',
-                                                    borderRadius: '8px'
+                                                    borderRadius: '8px',
+                                                    padding: '8px 12px'
                                                 }}
                                             />
 
@@ -314,16 +315,16 @@ const Attendance = () => {
                             </div>
 
                             {selectedEmpDetails && (
-                                <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '24px', textAlign: 'left' }}>
-                                    <div style={{ marginBottom: '16px' }}>
-                                        <p className="text-xs text-muted mb-1" style={{ textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '12px' }}>Department</p>
+                                <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '24px', textAlign: 'left', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                                    <div style={{ marginBottom: 0 }}>
+                                        <p className="text-xs text-muted mb-1" style={{ textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '11px' }}>Department</p>
                                         <p className="font-medium" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                            <span className="badge badge-neutral">{selectedEmpDetails.department}</span>
+                                            <span className="badge badge-neutral" style={{ fontSize: '12px', padding: '4px 8px' }}>{selectedEmpDetails.department}</span>
                                         </p>
                                     </div>
-                                    <div>
-                                        <p className="text-xs text-muted mb-1" style={{ textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '12px' }}>Email Contact</p>
-                                        <p style={{ fontSize: '14px', color: '#374151', wordBreak: 'break-all' }}>{selectedEmpDetails.email}</p>
+                                    <div style={{ overflow: 'hidden' }}>
+                                        <p className="text-xs text-muted mb-1" style={{ textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '11px' }}>Email Contact</p>
+                                        <p style={{ fontSize: '13px', color: '#374151', wordBreak: 'break-all' }}>{selectedEmpDetails.email}</p>
                                     </div>
                                 </div>
                             )}
